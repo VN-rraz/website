@@ -1,0 +1,39 @@
+body {
+    background: #3399ff ;
+    background-size: auto 100vh ;
+    font-family: monospace;
+    height: 100vh;
+  }
+  
+  .menu {
+    background-color: white;
+  }
+  
+  .menu ul {
+    display: flex;
+    justify-content: space-around;
+  }
+  
+  .menu li {
+    list-style: none;
+  }
+  
+  a {
+    color: teal;
+    text-decoration: none;
+  }
+  
+  a:hover {
+    text-decoration: underline;
+    color: red;
+  }
+  
+  .sub-titulo,
+  .titulo {
+    color: whitesmoke;
+    text-align: center; 
+  }
+  
+  .sub-titulo {
+    font-style: italic; 
+  }
