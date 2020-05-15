@@ -5,6 +5,7 @@
   box-sizing: border-box;
 }
 
+/*genérico, mexe em tudo que está dentro dele até segunda ordem */
 body {
     background: #3399ff ;
     background-size: auto 100vh ;
@@ -12,6 +13,8 @@ body {
     height: 100vh;
   }
   
+  /*@Media serve para deixar o seu site responsivo, ou seja, mudar o tamanho do elemento de acordo com o tamanho da tela*/
+
   @media (min-width: 400px) {
     body {
       font-size: 15px;
@@ -30,7 +33,7 @@ body {
     }
   }
 
-  /*para alinhar vertical e horizontalmente*/
+  /*para alinhar vertical e horizontalmente. OBS: display flex deixa tudo em colunas*/
   header {
     height: 100vh;
     display: flex;
@@ -38,13 +41,18 @@ body {
     align-items: center;
   }
 
+  /*na maioria dos casos não é interessante criar vetores genéricos, por isso crie uma class no seu HTML e apartir dai você cria um vetor específico usando o comando ".nome"(ponto nome) do vetor. isso facilita a edição de elementos específicos*/
+
+  /*z-index serve para falar do angulo z, como não especifiquei angulo para nenhum outro elemento o número 1 já será maior que todos. isso corrige o bug do translate ficar por cima do menu*/
   .menu {
     background-color: white;
     position: fixed;
     width: 100vw;
     top: 0;
+    z-index: 1;
   }
   
+  /*aqui vemos o .menu, menu foi uma class criada no HTML, minha class menu está dentro da minha tag nav, para editar um elemento especifico eu dou o comando abaixo. o comando "ponto menu" vai selecionar o menu, depois eu dou "espaço ul" para selecionar especificamente a "ul" do meu menu*/
   .menu ul {
     display: flex;
     justify-content: space-around;
@@ -58,18 +66,49 @@ body {
     display: block;
     /*background-color: rgb(119, 239, 255);*/
     padding: 10px 20px;
+    transition: background-color 1s, color 1s;
   }
+
+  /*O hover serve para ação de passar o mouse, o active serve para ação do click (ou touch no caso de smartphone).*/
+.menu a:active,
+.menu a:hover {
+  background-color: teal;
+  color: white;
+}
 
   a {
     color: teal;
     text-decoration: none;
   }
   
+  /*esse tal de hover serve para dar comando ao mouse*/
   a:hover {
     text-decoration: underline;
     color: red;
   }
+
+  .animatitulo {
+    /*estado inicial da animação definido aqui*/
+    transform: scale(0.2) translateY(50vh);
+    opacity: 0;
+
+    animation: 1s linear 2s animacaoTitulos forwards; 
+  }
+
+  /*nesse caso não precisa definir o estado inicial da animação (no caso from pois já foi definido acima)*/
+  /*from e to = estado inicial e estado final. se for usar mais estados na animação use porcentagem ex: 0% (estado inicial) 50% (meio estado) 100% (estado final) */
+  @keyframes animacaoTitulos {
+   from {
+    transform: scale(0.2) translateY(50vh);
+    opacity: 0;
+   }
+    to {
+      transform: scale(1) translateY(0);
+      opacity: 1;
+    }
+  }
   
+  /*você pode reaproveitar um estilo que já criou, é só colocar o nome do vetor desejado antes do vetor já estilizado e acresentar uma virgula*/
   .sub-titulo,
   .titulo {
     color: whitesmoke;
@@ -84,11 +123,13 @@ body {
     font-size: 1.5em;
   }
 
+  .contato,
   .portfolio {
     padding: 2em;
-    height: 100vh;
+    min-height: 100vh;
   }
 
+  .contato h2,
   .portfolio h2 {
     font-family: 'Share Tech Mono', monospace;
     color: whitesmoke;
@@ -97,6 +138,7 @@ body {
     font-weight: 1.2em;
   }
   
+  .contato .grid,
   .portfolio .grid {
     display: grid;
     gap: 2em;
@@ -139,7 +181,12 @@ body {
     object-position: ;
     /*para aredondar bordas altere o número*/
     border-radius: 10%;
+   transition: transform 500ms;
   }  
+
+  .img-portfolio:hover {
+    transform: scale(1.2)
+  }
   
   @media (min-width: 730px) {
     .img-portfolio {
@@ -153,4 +200,20 @@ body {
       height: 220px;
       width: 280px;
     }
+  }
+
+  .contato .icons{
+    text-align: center;
+  }
+
+  .contato a {
+    color: whitesmoke;
+    font-size: 6em;
+    transition: text-shadow 1s;
+  }
+
+  .contato a:active,
+  .contato a:hover {
+    text-decoration: none;
+    text-shadow: 0 0 10px rgba(255,255,255,.5);
   }
